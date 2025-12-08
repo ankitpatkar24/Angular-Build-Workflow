@@ -2,25 +2,19 @@ name: build-angular-app
 
 on:
   push:
-  pull_request:
+   branches: [ main ]
 
 jobs:
-  build:
+  build-angular-app:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install Dependencies
-        working-directory: Angular-Build-Workflow
-        run: npm install
-
-      - name: Build Angular App
-        working-directory: Angular-Build-Workflow
-        run: npm run build --prod
+       - uses: actions/checkout@v6.0.1
+       - name: Setup Node.js
+         uses: actions/setup-node@v6.1.0
+         with:
+          node-version: 22.x
+       - name: Install Dependencies
+         run: npm install
+       - name: Build Angular App
+         run: npm run build
